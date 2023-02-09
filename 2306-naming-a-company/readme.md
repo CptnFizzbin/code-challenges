@@ -43,7 +43,7 @@ Explanation: There are no valid selections. Therefore, 0 is returned.
 
 ### Constraints:
 
-- `2 <= ideas.length <= 5 * 104`
+- `2 <= ideas.length <= 5 * 10^4`
 - `1 <= ideas[i].length <= 10`
 - `ideas[i]` consists of lowercase English letters.
 - All the strings in `ideas` are **unique**.
