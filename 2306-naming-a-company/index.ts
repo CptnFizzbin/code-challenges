@@ -8,8 +8,8 @@ export function distinctNames (ideas: string[]): number {
       if (first === second) return;
 
       const [sFirst, sSecond] = swapLetters([first, second]);
-      if (pairings.hasOwnProperty(sFirst)) return;
-      if (pairings.hasOwnProperty(sSecond)) return;
+      if (seen.hasOwnProperty(sFirst)) return;
+      if (seen.hasOwnProperty(sSecond)) return;
 
       pairings += 1;
     });

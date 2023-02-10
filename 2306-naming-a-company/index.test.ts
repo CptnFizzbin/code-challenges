@@ -13,7 +13,7 @@ test('test3', () => {
 });
 
 
-xtest('massive list', async () => {
+test('massive list', async () => {
   const inputs = await import("./words.json")
   expect(distinctNames(inputs.ideas)).toEqual(inputs.expected);
 });
