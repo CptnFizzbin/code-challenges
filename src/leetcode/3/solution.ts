@@ -1,21 +1,21 @@
 export function lengthOfLongestSubstring(input: string): number {
-  const letters = input.split("");
-  let maxLength = 0;
-  let scanWindow = "";
+  const letters = input.split("")
+  let maxLength = 0
+  let scanWindow = ""
 
   for (const letter of letters) {
-    const index = scanWindow.indexOf(letter);
+    const index = scanWindow.indexOf(letter)
 
     if (index != -1) {
-      scanWindow = scanWindow.substring(index + 1);
+      scanWindow = scanWindow.substring(index + 1)
     }
 
-    scanWindow += letter;
+    scanWindow += letter
 
     if (scanWindow.length > maxLength) {
-      maxLength = scanWindow.length;
+      maxLength = scanWindow.length
     }
   }
 
-  return maxLength;
+  return maxLength
 }
