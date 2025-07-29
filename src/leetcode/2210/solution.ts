@@ -1,7 +1,19 @@
 export function countHillValley(nums: number[]): number {
-  if (nums.length <= 2) return 0
-  let hills = 0
-  const valleys = 0
+  type ScanWindow = [number, number, number]
+
+  function filterConsecutive<Data>() {
+    let lastSeen: Data
+    return (item: Data) => {
+      if (item === lastSeen) return false
+      lastSeen = item
+      return true
+    }
+  }
+
+  const shiftWindow = (scanWindow: ScanWindow, next: number) => {
+    scanWindow.shift()
+    scanWindow.push(next)
+  }
 
   const isHill = (window: [number, number, number]): boolean => {
     const [left, item, right] = window
@@ -13,20 +25,23 @@ export function countHillValley(nums: number[]): number {
     return item < left && item < right
   }
 
+  nums = nums.filter(filterConsecutive())
+  if (nums.length <= 2) {
+    // Early return since there needs to be at least 3 items to form a hill or valley
+    return 0
+  }
+
+  let count = 0
+
   const scanWindow: [number, number, number] = [nums[0], nums[1], nums[2]]
   let scanIndex = 3
 
-  console.log({ nums })
   while (scanIndex <= nums.length) {
-    console.log({ scanWindow })
+    if (isHill(scanWindow) || isValley(scanWindow)) count += 1
 
-    if (isHill(scanWindow)) hills += 1
-    else if (isValley(scanWindow)) hills += 1
-
-    scanWindow.shift()
-    scanWindow.push(nums[scanIndex])
+    shiftWindow(scanWindow, nums[scanIndex])
     scanIndex += 1
   }
 
-  return hills + valleys
+  return count
 }
